@@ -21,9 +21,9 @@
 
 ## 安裝與執行步驟
 
-1. 開啟終端機輸入 `git clone  `
+1. 開啟終端機輸入 `git clone https://github.com/nick1092387456/ac_assignment_2-3_w1_A3_restaurants_list.git`
    
-2. 進入此專案資料夾 `cd `
+2. 進入此專案資料夾 `cd ac_assignment_2-3_w1_A3_restaurants_list  `
 
 3. 安裝 package.json 套件 `npm install`
 
