@@ -57,11 +57,18 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
 
 //search
 app.get('/search', (req, res) => {
-  const keyword = req.query.keyword
-  const restaurants = restaurantList.results.filter((restaurant) => {
-    return restaurant.name.toLowerCase().includes(keyword.toLocaleLowerCase())
-  })
-  res.render('index', { restaurants: restaurants, keyword: keyword })
+  const keyword = req.query.keyword.toLowerCase()
+  List.find()
+    .lean()
+    .then((lists) => {
+      lists = lists.filter(
+        (list) =>
+          list.name.toLowerCase().includes(keyword) ||
+          list.category.toLowerCase().includes(keyword)
+      )
+      res.render('index', { restaurants: lists, keyword: keyword })
+    })
+    .catch((error) => console.log('search part error'))
 })
 
 //Start and listen the server
