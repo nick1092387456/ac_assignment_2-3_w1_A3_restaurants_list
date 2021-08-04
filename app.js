@@ -7,6 +7,10 @@ const restaurantList = require('./restaurant.json')
 
 //Include handlebars
 const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
+
+//載入BodyParser
+app.use(bodyParser.urlencoded({ extended: true }))
 
 //載入Model
 const List = require('./models/list')
@@ -69,6 +73,35 @@ app.get('/search', (req, res) => {
       res.render('index', { restaurants: lists, keyword: keyword })
     })
     .catch((error) => console.log('search part error'))
+})
+
+//create
+app.get('/lists/new', (req, res) => {
+  return res.render('new')
+})
+
+app.post('/lists', (req, res) => {
+  const name = req.body.name
+  const category = req.body.category
+  const image = req.body.image
+  const location = req.body.location
+  const phone = req.body.phone
+  const google_map = req.body.google_map
+  const rating = req.body.rating
+  const description = req.body.description
+
+  return List.create({
+    name,
+    category,
+    image,
+    location,
+    phone,
+    google_map,
+    rating,
+    description,
+  })
+    .then(() => res.redirect('/'))
+    .catch((error) => console.log('create function error'))
 })
 
 //Start and listen the server
