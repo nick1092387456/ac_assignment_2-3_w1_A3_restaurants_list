@@ -1,6 +1,17 @@
 //Include express from node_modules
 const express = require('express')
 const app = express()
+
+//載入餐廳Json檔
+const restaurantList = require('./restaurant.json')
+
+//Include handlebars
+const exphbs = require('express-handlebars')
+
+//載入Model
+const List = require('./models/list')
+
+//載入mongoose
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/restaurant-list', {
   useNewUrlParser: true,
@@ -16,12 +27,6 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
-//載入餐廳Json檔
-const restaurantList = require('./restaurant.json')
-
-//Include handlebars
-const exphbs = require('express-handlebars')
-
 //Define server related variables
 const port = 3000
 
@@ -35,13 +40,16 @@ app.use(express.static('public'))
 //setting route and response
 //index
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantList.results })
+  List.find()
+    .lean()
+    .then((lists) => res.render('index', { restaurants: lists }))
+    .catch((error) => console.log('error'))
 })
 
 //show
 app.get('/restaurants/:restaurant_id', (req, res) => {
-  const restaurant = restaurantList.results.find(
-    (restaurant) => restaurant.id.toString() === req.params.restaurant_id
+  const restaurant = lists.find(
+    (restaurant) => lists._id.toString() === req.params.restaurant_id
   )
   res.render('show', { restaurant: restaurant })
 })
