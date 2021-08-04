@@ -48,10 +48,11 @@ app.get('/', (req, res) => {
 
 //show
 app.get('/restaurants/:restaurant_id', (req, res) => {
-  const restaurant = lists.find(
-    (restaurant) => lists._id.toString() === req.params.restaurant_id
-  )
-  res.render('show', { restaurant: restaurant })
+  const id = req.params.restaurant_id
+  return List.findById(id)
+    .lean()
+    .then((list) => res.render('show', { restaurant: list }))
+    .catch((error) => console.log('error'))
 })
 
 //search
