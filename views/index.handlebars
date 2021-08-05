@@ -29,12 +29,16 @@
 </div>
 
 <!-- Create Button -->
+<<<<<<< HEAD
 <button
   onclick="location.href='./lists/new'"
   type='button'
   class='btn btn-secondary btn-lg'
   style='position: fixed; bottom: 20px; right: 20px;'
 ><i class='fas fa-plus'></i> 新增餐廳</button>
+=======
+<a href='./lists/new'>Create</a>
+>>>>>>> dc7f05e351cc3ae1528e007b6b9409c135ba0025
 
 <!-- restaurant list -->
 <div class='container mt-5'>
@@ -61,6 +65,7 @@
                   {{this.rating}}
                   <i class='fas fa-star fa-xs'></i>
                 </span>
+<<<<<<< HEAD
                 <div class='mb-3' style='float: right;'>
                   <a href='./lists/{{this._id}}/edit'>Edit</a>
                   <a href='./lists/{{this._id}}'>Detail</a>
@@ -73,6 +78,18 @@
                     <button type='submit'>Delete</button>
                   </form>
                 </div>
+=======
+                <a href='./lists/{{this._id}}/edit'>Edit</a>
+                <a href='./lists/{{this._id}}'>Detail</a>
+                <!-- Edit Detail Delete -->
+                <form
+                  action='./lists/{{this._id}}/delete'
+                  method='POST'
+                  style='display: inline;'
+                >
+                  <button type='submit'>Delete</button>
+                </form>
+>>>>>>> dc7f05e351cc3ae1528e007b6b9409c135ba0025
               </div>
             </div>
           </a>
