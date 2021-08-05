@@ -29,7 +29,6 @@
 </div>
 
 <!-- Create Button -->
-
 <a href='./lists/new'>Create</a>
 
 <!-- restaurant list -->
@@ -57,14 +56,19 @@
                   {{this.rating}}
                   <i class='fas fa-star fa-xs'></i>
                 </span>
+                <a href='./lists/{{this._id}}/edit'>Edit</a>
+                <a href='./lists/{{this._id}}'>Detail</a>
+                <!-- Edit Detail Delete -->
+                <form
+                  action='./lists/{{this._id}}/delete'
+                  method='POST'
+                  style='display: inline;'
+                >
+                  <button type='submit'>Delete</button>
+                </form>
               </div>
             </div>
           </a>
-
-          <!-- Edit Detail Delete -->
-          <a href='./lists/{{this._id}}/edit'>Edit</a>
-          <a href='./lists/{{this._id}}'>Detail</a>
-
         {{/each}}
       </div>
     </div>

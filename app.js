@@ -17,6 +17,7 @@ const List = require('./models/list')
 
 //載入mongoose
 const mongoose = require('mongoose')
+const { findById } = require('./models/list')
 mongoose.connect('mongodb://localhost/restaurant-list', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -51,12 +52,12 @@ app.get('/', (req, res) => {
 })
 
 //detail
-app.get('/lists/:list_id', (req, res) => {
-  const id = req.params.list_id
+app.get('/lists/:id', (req, res) => {
+  const id = req.params.id
   return List.findById(id)
     .lean()
     .then((list) => res.render('detail', { list }))
-    .catch((error) => console.log('error'))
+    .catch((error) => console.log('detail route error'))
 })
 
 //edit
@@ -108,7 +109,7 @@ app.get('/search', (req, res) => {
           list.name.toLowerCase().includes(keyword) ||
           list.category.toLowerCase().includes(keyword)
       )
-      res.render('index', { restaurants: lists, keyword: keyword })
+      res.render('index', { lists, keyword: keyword })
     })
     .catch((error) => console.log('search route error'))
 })
@@ -140,6 +141,15 @@ app.post('/lists', (req, res) => {
   })
     .then(() => res.redirect('/'))
     .catch((error) => console.log('create function error'))
+})
+
+//delete
+app.post('/lists/:id/delete', (req, res) => {
+  const id = req.params.id
+  return List.findById(id)
+    .then((todo) => todo.remove())
+    .then(() => res.redirect('/'))
+    .catch((error) => console.log('delete route error'))
 })
 
 //Start and listen the server
