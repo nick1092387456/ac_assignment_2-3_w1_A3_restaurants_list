@@ -30,11 +30,11 @@
    
 2. 進入此專案資料夾 `cd ac_assignment_2-3_w1_A3_restaurants_list  `
 
-3. npm install
+3. `npm install`
 
-4. npm run seed
+4. `npm run seed`
 
-4. npm run dev
+4. `npm run dev`
 
 5. 出現以下訊息後，即可在 http://localhost:3000 開始使用 `Server is startedㄝ, mongodb connected!`
 
