@@ -1,4 +1,5 @@
 ![image text](https://github.com/nick1092387456/ac_assignment_2-3_w1_A3_restaurants_list/blob/main/image.png?raw=true)
+![image text](https://github.com/nick1092387456/ac_assignment_2-3_w1_A3_restaurants_list/blob/main/image2.png?raw=true)
 
 
 # Restaurant
@@ -6,8 +7,12 @@
 
 ## Features
 
-- 列表喜愛的餐廳、查看餐廳資訊
+- 列表喜愛的餐廳
+- 查看餐廳資訊
 - 搜尋餐廳功能
+- 新增餐廳功能
+- 編輯餐廳功能
+- 刪除餐廳功能
 
 ## 環境建置與需求 (prerequisites)
 
@@ -25,9 +30,13 @@
    
 2. 進入此專案資料夾 `cd ac_assignment_2-3_w1_A3_restaurants_list  `
 
-3. 安裝 package.json 套件 `npm install`
+3. npm install
 
-4. 啟動專案 `npm run dev`
+4. npm run seed
 
-5. 出現以下訊息後，即可在 http://localhost:3000 開始使用 `Server is started`
+4. npm run dev
+
+5. 出現以下訊息後，即可在 http://localhost:3000 開始使用 `Server is startedㄝ, mongodb connected!`
+
+
 
