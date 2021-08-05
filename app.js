@@ -99,18 +99,11 @@ app.post('/lists', (req, res) => {
 //detail
 app.get('/lists/:id', (req, res) => {
   const id = req.params.id
-<<<<<<< HEAD
   console.log(id)
   return List.findById(id)
     .lean()
     .then((list) => res.render('detail', { list }))
     .catch((error) => console.log(error))
-=======
-  return List.findById(id)
-    .lean()
-    .then((list) => res.render('detail', { list }))
-    .catch((error) => console.log('detail route error'))
->>>>>>> dc7f05e351cc3ae1528e007b6b9409c135ba0025
 })
 
 //edit
@@ -151,55 +144,11 @@ app.post('/lists/:list_id/edit', (req, res) => {
     .catch((error) => console.log('edit post route error'))
 })
 
-<<<<<<< HEAD
 //delete
 app.post('/lists/:id/delete', (req, res) => {
   const id = req.params.id
   return List.findById(id)
     .then((todo) => todo.remove())
-=======
-//search
-app.get('/search', (req, res) => {
-  const keyword = req.query.keyword.toLowerCase()
-  List.find()
-    .lean()
-    .then((lists) => {
-      lists = lists.filter(
-        (list) =>
-          list.name.toLowerCase().includes(keyword) ||
-          list.category.toLowerCase().includes(keyword)
-      )
-      res.render('index', { lists, keyword: keyword })
-    })
-    .catch((error) => console.log('search route error'))
-})
-
-//create
-app.get('/lists/new', (req, res) => {
-  return res.render('new')
-})
-
-app.post('/lists', (req, res) => {
-  const name = req.body.name
-  const category = req.body.category
-  const image = req.body.image
-  const location = req.body.location
-  const phone = req.body.phone
-  const google_map = req.body.google_map
-  const rating = req.body.rating
-  const description = req.body.description
-
-  return List.create({
-    name,
-    category,
-    image,
-    location,
-    phone,
-    google_map,
-    rating,
-    description,
-  })
->>>>>>> dc7f05e351cc3ae1528e007b6b9409c135ba0025
     .then(() => res.redirect('/'))
     .catch((error) => console.log('delete route error'))
 })
