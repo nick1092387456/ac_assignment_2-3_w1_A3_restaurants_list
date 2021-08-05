@@ -51,53 +51,6 @@ app.get('/', (req, res) => {
     .catch((error) => console.log('index error'))
 })
 
-//detail
-app.get('/lists/:id', (req, res) => {
-  const id = req.params.id
-  return List.findById(id)
-    .lean()
-    .then((list) => res.render('detail', { list }))
-    .catch((error) => console.log('detail route error'))
-})
-
-//edit
-app.get('/lists/:list_id/edit', (req, res) => {
-  const id = req.params.list_id
-
-  return List.findById(id)
-    .lean()
-    .then((list) => res.render('edit', { list }))
-    .catch((error) => console.log('edit page error'))
-})
-
-app.post('/lists/:list_id/edit', (req, res) => {
-  const id = req.params.list_id
-  const name = req.body.name
-  const category = req.body.category
-  const image = req.body.image
-  const location = req.body.location
-  const phone = req.body.phone
-  const google_map = req.body.google_map
-  const rating = req.body.rating
-  const description = req.body.description
-
-  return List.findById(id)
-    .then((list) => {
-      list.name = name
-      list.category = category
-      list.image = image
-      list.location = location
-      list.phone = phone
-      list.google_map = google_map
-      list.rating = rating
-      list.description = description
-
-      return list.save()
-    })
-    .then(() => res.redirect(`/lists/${id}`))
-    .catch((error) => console.log('edit post route error'))
-})
-
 //search
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.toLowerCase()
@@ -141,6 +94,54 @@ app.post('/lists', (req, res) => {
   })
     .then(() => res.redirect('/'))
     .catch((error) => console.log('create function error'))
+})
+
+//detail
+app.get('/lists/:id', (req, res) => {
+  const id = req.params.id
+  console.log(id)
+  return List.findById(id)
+    .lean()
+    .then((list) => res.render('detail', { list }))
+    .catch((error) => console.log(error))
+})
+
+//edit
+app.get('/lists/:list_id/edit', (req, res) => {
+  const id = req.params.list_id
+
+  return List.findById(id)
+    .lean()
+    .then((list) => res.render('edit', { list }))
+    .catch((error) => console.log('edit page error'))
+})
+
+app.post('/lists/:list_id/edit', (req, res) => {
+  const id = req.params.list_id
+  const name = req.body.name
+  const category = req.body.category
+  const image = req.body.image
+  const location = req.body.location
+  const phone = req.body.phone
+  const google_map = req.body.google_map
+  const rating = req.body.rating
+  const description = req.body.description
+
+  return List.findById(id)
+    .then((list) => {
+      list.name = name
+      list.category = category
+      list.image = image
+      list.location = location
+      list.phone = phone
+      list.google_map = google_map
+      list.rating = rating
+      list.description = description
+
+      return list.save()
+    })
+    .then(() => res.redirect(`/lists/${id}`))
+    .catch((error) => console.log('edit post route error'))
 })
 
 //delete
