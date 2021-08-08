@@ -1,5 +1,4 @@
-![image text](https://github.com/nick1092387456/ac_assignment_2-3_w1_A3_restaurants_list/blob/main/image.png?raw=true)
-![image text](https://github.com/nick1092387456/ac_assignment_2-3_w1_A3_restaurants_list/blob/main/image2.png?raw=true)
+![image text](https://github.com/nick1092387456/ac_assignment_2-3_w1_A3_restaurants_list/blob/main/image3.png?raw=true)
 
 
 # Restaurant
