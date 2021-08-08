@@ -1,4 +1,8 @@
-<form action='/lists/{{list._id}}/edit' method='POST' class='w-50 ml-5 mt-5'>
+<form
+  action='/lists/{{list._id}}?_method=PUT'
+  method='POST'
+  class='w-50 ml-5 mt-5'
+>
 
   <div class='form-group'>
     <label for='name'>餐廳名稱</label>
