@@ -13,7 +13,7 @@ router.get('/search', (req, res) => {
           list.name.toLowerCase().includes(keyword) ||
           list.category.toLowerCase().includes(keyword)
       )
-      res.render('index', { lists, keyword: keyword })
+      res.render('index', { lists, keyword })
     })
     .catch((error) => console.log('search route error'))
 })
