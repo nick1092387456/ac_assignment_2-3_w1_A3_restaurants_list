@@ -1,5 +1,7 @@
 //Include express from node_modules
 const express = require('express')
+const session = require('express-session')
+const usePassport = require('./config/passport')
 const app = express()
 
 //載入餐廳Json檔
@@ -21,8 +23,18 @@ app.use(methodOverride('_method'))
 
 //引用路由器
 const routes = require('./routes')
+
+usePassport(app)
 //將request導入
 app.use(routes)
+
+app.use(
+  session({
+    secret: 'ThisIsMySecret',
+    resave: false,
+    saveUninitialized: true,
+  })
+)
 
 //Define server related variables
 const port = 3000
