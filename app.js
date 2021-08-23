@@ -23,6 +23,11 @@ app.use(
   })
 )
 usePassport(app)
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  next()
+})
 
 //載入餐廳Json檔
 const restaurantList = require('./restaurant.json')
