@@ -1,32 +1,19 @@
-//Include express from node_modules
 const express = require('express')
+const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 const session = require('express-session')
 const usePassport = require('./config/passport')
-const app = express()
-
-//載入餐廳Json檔
-const restaurantList = require('./restaurant.json')
-
-//載入mongoose config
-require('./config/mongoose')
-
-//Include handlebars
+require('./config/mongoose.js')
 const exphbs = require('express-handlebars')
-const bodyParser = require('body-parser')
-
-//載入BodyParser
-app.use(bodyParser.urlencoded({ extended: true }))
-
-//載入method-override
-const methodOverride = require('method-override')
-app.use(methodOverride('_method'))
-
-//引用路由器
 const routes = require('./routes')
 
-usePassport(app)
-//將request導入
-app.use(routes)
+const app = express()
+
+const port = 3000
+
+//setting template engine
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.set('view engine', 'handlebars')
 
 app.use(
   session({
@@ -35,16 +22,17 @@ app.use(
     saveUninitialized: true,
   })
 )
+usePassport(app)
 
-//Define server related variables
-const port = 3000
+//載入餐廳Json檔
+const restaurantList = require('./restaurant.json')
 
-//setting template engine
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
-app.set('view engine', 'handlebars')
+//載入BodyParser
+app.use(bodyParser.urlencoded({ extended: true }))
 
-//setting static files
 app.use(express.static('public'))
+app.use(methodOverride('_method'))
+app.use(routes)
 
 //Start and listen the server
 app.listen(port, () => {
