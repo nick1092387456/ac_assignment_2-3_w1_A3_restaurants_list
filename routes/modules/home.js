@@ -4,8 +4,10 @@ const List = require('../../models/list')
 
 //index
 router.get('/', (req, res) => {
-  List.find()
+  const userId = req.user._id
+  List.find({ userId })
     .lean()
+    .sort({ _id: 'asc' })
     .then((lists) => res.render('index', { lists }))
     .catch((error) => console.log('index error'))
 })

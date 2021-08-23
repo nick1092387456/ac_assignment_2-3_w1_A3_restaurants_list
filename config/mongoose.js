@@ -4,6 +4,7 @@ const { findById } = require('../models/list')
 mongoose.connect('mongodb://localhost/restaurant-list', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
 })
 
 //取得連線狀態

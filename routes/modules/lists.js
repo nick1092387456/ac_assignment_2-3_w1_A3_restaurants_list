@@ -23,7 +23,8 @@ router.get('/new', (req, res) => {
   return res.render('new')
 })
 
-router.post('/lists', (req, res) => {
+router.post('/', (req, res) => {
+  const userId = req.user._id
   const name = req.body.name
   const category = req.body.category
   const image = req.body.image
@@ -34,6 +35,7 @@ router.post('/lists', (req, res) => {
   const description = req.body.description
 
   return List.create({
+    userId,
     name,
     category,
     image,
@@ -44,14 +46,14 @@ router.post('/lists', (req, res) => {
     description,
   })
     .then(() => res.redirect('/'))
-    .catch((error) => console.log('create function error'))
+    .catch((error) => console.log(error))
 })
 
 //detail
 router.get('/:id', (req, res) => {
-  const id = req.params.id
-  console.log(id)
-  return List.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return List.findOne({ _id, userId })
     .lean()
     .then((list) => res.render('detail', { list }))
     .catch((error) => console.log(error))
@@ -59,16 +61,17 @@ router.get('/:id', (req, res) => {
 
 //edit
 router.get('/:list_id/edit', (req, res) => {
-  const id = req.params.list_id
-
-  return List.findById(id)
+  const userId = req.user._id
+  const _id = req.params.list_id
+  return List.findOne({ _id, userId })
     .lean()
     .then((list) => res.render('edit', { list }))
     .catch((error) => console.log('edit page error'))
 })
 
 router.put('/:list_id', (req, res) => {
-  const id = req.params.list_id
+  const userId = req.user._id
+  const _id = req.params.list_id
   const name = req.body.name
   const category = req.body.category
   const image = req.body.image
@@ -78,7 +81,7 @@ router.put('/:list_id', (req, res) => {
   const rating = req.body.rating
   const description = req.body.description
 
-  return List.findById(id)
+  return List.findOne({ _id, userId })
     .then((list) => {
       list.name = name
       list.category = category
@@ -91,14 +94,15 @@ router.put('/:list_id', (req, res) => {
 
       return list.save()
     })
-    .then(() => res.redirect(`/lists/${id}`))
+    .then(() => res.redirect(`/lists/${_id}`))
     .catch((error) => console.log(error))
 })
 
 //delete
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  return List.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return List.findOne({ _id, userId })
     .then((todo) => todo.remove())
     .then(() => res.redirect('/'))
     .catch((error) => console.log(error))
