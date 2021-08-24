@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/nick1092387456/ac_assignment_2-3_w1_A3_restaurants_list#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
     "express": "^4.17.1",
