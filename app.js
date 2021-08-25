@@ -13,7 +13,7 @@ const routes = require('./routes')
 
 const app = express()
 
-const port = process.env.PORT
+const PORT = process.env.PORT
 
 //setting template engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
@@ -47,6 +47,6 @@ app.use(methodOverride('_method'))
 app.use(routes)
 
 //Start and listen the server
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log(`Server is started`)
 })
