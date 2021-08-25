@@ -1,7 +1,8 @@
 //載入mongoose
 const mongoose = require('mongoose')
 const { findById } = require('../models/list')
-mongoose.connect('mongodb://localhost/restaurant-list', {
+const MONGODB_URI = process.env.MONGODB_URI
+mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,

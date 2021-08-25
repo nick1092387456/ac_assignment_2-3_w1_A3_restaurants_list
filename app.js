@@ -2,6 +2,9 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const flash = require('connect-flash')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 const session = require('express-session')
 const usePassport = require('./config/passport')
 require('./config/mongoose.js')
@@ -10,7 +13,7 @@ const routes = require('./routes')
 
 const app = express()
 
-const port = 3000
+const port = process.env.PORT
 
 //setting template engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
@@ -18,7 +21,7 @@ app.set('view engine', 'handlebars')
 
 app.use(
   session({
-    secret: 'ThisIsMySecret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
   })
