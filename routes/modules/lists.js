@@ -66,7 +66,7 @@ router.get('/:list_id/edit', (req, res) => {
   return List.findOne({ _id, userId })
     .lean()
     .then((list) => res.render('edit', { list }))
-    .catch((error) => console.log('edit page error'))
+    .catch((error) => console.log(error))
 })
 
 router.put('/:list_id', (req, res) => {
