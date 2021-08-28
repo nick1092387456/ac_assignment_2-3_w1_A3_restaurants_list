@@ -1,3 +1,4 @@
+![image text](https://github.com/nick1092387456/ac_assignment_2-3_w1_A3_restaurants_list/blob/main/image4.png)
 ![image text](https://github.com/nick1092387456/ac_assignment_2-3_w1_A3_restaurants_list/blob/main/image3.png?raw=true)
 
 
@@ -12,6 +13,8 @@
 - 新增餐廳功能
 - 編輯餐廳功能
 - 刪除餐廳功能
+- 使用FB登入
+- 建立自己的帳號
 
 ## 環境建置與需求 (prerequisites)
 
@@ -22,6 +25,17 @@
 - Bootstrap - (v4.6.0)
 - jQuery - (v3.6.0)
 - popperJs - (v2.9.1)
+- bcryptjs": 2.4.3
+- body-parser": 1.19.0
+- connect-flash": 0.1.1
+- dotenv": 10.0.0
+- express-session": 1.17.2
+- method-override": 3.0.0
+- mongoose": 5.13.5
+- passport": 0.4.1
+- passport-facebook": 3.0.0
+- passport-local": 1.0.0
+
 
 ## 安裝與執行步驟
 
