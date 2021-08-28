@@ -1,5 +1,5 @@
 ![image text](https://github.com/nick1092387456/ac_assignment_2-3_w1_A3_restaurants_list/blob/main/image4.png)
-![image text](https://github.com/nick1092387456/ac_assignment_2-3_w1_A3_restaurants_list/blob/main/image3.png?raw=true)
+![image text](https://github.com/nick1092387456/ac_assignment_2-3_w1_A3_restaurants_list/blob/main/image5.png)
 
 
 # Restaurant
@@ -14,7 +14,8 @@
 - 編輯餐廳功能
 - 刪除餐廳功能
 - 使用FB登入
-- 建立自己的帳號
+- 註冊帳號
+- 登入登出功能
 
 ## 環境建置與需求 (prerequisites)
 
